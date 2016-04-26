@@ -1,0 +1,59 @@
+﻿@using Areas.Models.CalculoRectangulo
+
+<script>
+    function calcularArea()
+    {
+            var dataForm = new FormData(document.getElementById("registro_datos"));
+            $.ajax({
+                type: "POST",
+                url: '@Url.RouteUrl("", new { action = "calculoAreaCirculo", controller = "CalculosCirculos" })' + "?activo=S",
+                dataType: "json",
+                data: dataForm,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    document.getElementById("result").value = response.respuesta;
+                }
+            });
+
+    }
+
+    function regresar()
+    {
+        $("#principal").show();
+        $("#Modulos").empty();
+
+    }
+</script>
+
+
+
+<div class="container-fluid ">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div class="cerrar_form" onclick="regresar();" style="align-items:flex-end"><i class="fa fa-times-circle fa-lg"></i></div>
+            Calculo Area Rectangulo
+            <div class="row col-md-12" style="height:10px;"> </div>
+
+            <form id="registro_datos" name="registro_datos" class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-2 " style="font-family:Arial; font-size:medium;">Radio:</div>
+                    <div class="col-md-2"><input type="number" id="Valradio" name="Valradio" class="form-control" /></div>
+                    <div class="col-md-2 " style="font-family:Arial; font-size:medium;">Area:</div>
+                    <div class="col-md-2"><input type="number" disabled="disabled" id="result" name="result" class="form-control" /></div>
+               </div>
+                     <br />
+                <hr />
+                <div class="row">
+                    <div class="col-md-12" style="text-align:center">
+                        <input type="button" class="btn btn-primary" onclick="calcularArea();" value="Calcular" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

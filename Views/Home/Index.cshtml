@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript">
+   
+    function cargarCirculo() {
+        $("#principal").hide();
+        $.ajax({
+            type: "POST",
+            url: '@Url.RouteUrl("", new { action = "index", controller = "CalculosCirculos" })',
+            dataType: "html",
+            data: null,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#Modulos").empty();
+                $("#Modulos").html(response);
+            }
+        });
+
+    }
+
+
+</script>
+
+    <div class="row" style="text-align:center">
+        <h1>Calculo de Areas</h1>
+    </div>
+ <br />
+<hr />
+    <div class="row" style="align-content:center" id="principal">
+    <div class="col-md-4" style="align-content:center">
+        <input type="button" value="Calculos del Circulo" class="btn btn-success" onclick="cargarCirculo();" />
+    </div>
+    <div class="col-md-4">
+        <input type="button" value="Calculos del Rectangulo" class="btn btn-success" onclick="cargarRectagulo();" />
+    </div>
+    <div class="col-md-4">
+        <input type="button" value="Calculos Triangulo" class="btn btn-success" onclick="cargarTriangulo();" />
+    </div>
+
+    <br />
+    <hr />
+</div>
+<div id="Modulos">
+
+</div>
+
