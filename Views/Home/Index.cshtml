@@ -2,6 +2,27 @@
     ViewBag.Title = "Home Page";
 }
 
+    function cargarTriangulo() {
+        $("#principal").hide();
+        $.ajax({
+            type: "POST",
+            url: '@Url.RouteUrl("", new { action = "index", controller = "CalculoTriangulo" })',
+            dataType: "html",
+            data: null,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $("#Modulos").empty();
+                $("#Modulos").html(response);
+            
+            }
+        });
+
+    }
+
+
+
 <script type="text/javascript">
    
     function cargarCirculo() {
